@@ -2,6 +2,8 @@ package ua.hillel.jpademo.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -14,6 +16,8 @@ public class Customer {
     // FOREIGN KEY (addressId) REFERENCES address(id)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     public void setId(Integer id) {
         this.id = id;

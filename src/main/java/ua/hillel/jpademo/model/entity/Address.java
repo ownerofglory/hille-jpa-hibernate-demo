@@ -10,7 +10,9 @@ public class Address {
     private Integer id;
     private int number;
     private String street;
+    @Column(nullable = false)
     private String city;
+    @Column(name = "zip_code")
     private String zipCode;
     private String country;
     @OneToOne(mappedBy = "address")

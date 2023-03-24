@@ -5,8 +5,10 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import ua.hillel.jpademo.model.entity.Address;
 import ua.hillel.jpademo.model.entity.Customer;
-import ua.hillel.jpademo.repo.CustomerJpaRepo;
-import ua.hillel.jpademo.repo.CustomerRepo;
+import ua.hillel.jpademo.model.entity.Item;
+import ua.hillel.jpademo.repo.*;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,20 +20,29 @@ public class Main {
 
             CustomerRepo repo = new CustomerJpaRepo(entityManager);
 
+            ItemRepo itemRepo = new ItemJpaRepo(entityManager);
+            OrderRepo orderRepo = new OrderJpaRepo(entityManager);
+
+
             Customer customer = new Customer();
-            customer.setEmail("mail@maiul.com");
-            customer.setName("John Doe");
+            customer.setEmail("jane@mail.com");
+            customer.setName("Jane Doe");
 
             Address address = new Address();
             address.setZipCode("04000");
-            address.setNumber(1);
-            address.setCity("City");
-            address.setCountry("Country");
-            address.setStreet("Stere");
-
+            address.setNumber(12);
+            address.setCity("Samplecity");
+            address.setCountry("USA");
+            address.setStreet("Samplestr.");
+            customer.setAddress(address);
             repo.addCustomer(customer);
 
             Customer byId = repo.getById(1);
+
+            List<Item> items = itemRepo.getAll();
+
+            orderRepo.createOrder(byId, items);
+
             System.out.println();
 
         } catch (Exception e) {

@@ -10,9 +10,9 @@
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db.amazonaws.com:3306/webstore" />
-            <property name="javax.persistence.jdbc.user" value="user" />
-            <property name="javax.persistence.jdbc.password" value="pass" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql:/dbinstancename.amazonaws.com:3306/webstore" />
+            <property name="javax.persistence.jdbc.user" value="dbuser" />
+            <property name="javax.persistence.jdbc.password" value="dbpassword" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="none"/>
         </properties>

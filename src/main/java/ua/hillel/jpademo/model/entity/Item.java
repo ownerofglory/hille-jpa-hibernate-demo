@@ -1,17 +1,21 @@
 package ua.hillel.jpademo.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "item")
 public class Item {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
     private String description;
+    @Column(name = "img_url")
     private String imgUrl;
+    @ManyToMany(mappedBy = "items", cascade = CascadeType.ALL)
+    private List<Order> order;
 
     public int getId() {
         return id;
